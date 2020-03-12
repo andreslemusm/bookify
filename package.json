@@ -1,0 +1,26 @@
+{
+  "name": "hoteles",
+  "version": "1.0.0",
+  "description": "A single page application for booking a hotel",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel public/index.html"
+  },
+  "author": "Andres Lemus",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "bulma": "^0.8.0",
+    "font-awesome": "^4.7.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "parcel-bundler": "^1.12.4"
+  }
+}
