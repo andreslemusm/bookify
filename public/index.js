@@ -1,12 +1,18 @@
 //React Dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+//Bulma Dependencies
+import 'bulma/css/bulma.css';
+
 //FontAwesome Dependencies
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { Hero } from '../src/scripts/components/Hero.js';
+
+//Components Dependencies
+import Filters from '../src/scripts/components/Filters.js';
+import Hero from '../src/scripts/components/Hero.js';
+
 //Data Dependencies
 import { today } from '../src/scripts/data.js';
-import { DateFilter } from '../src/scripts/components/DateFilter.js';
 
 function App() {
   const filters = {
@@ -20,8 +26,7 @@ function App() {
   return (
     <div>
       <Hero filters={filters} />
-      <DateFilter date={filters.dateFrom} icon={fas.faSignInAlt} />
-      <DateFilter date={filters.dateTo} icon={fas.faSignOutAlt} />
+      <Filters filters={filters} />
     </div>
   );
 }

@@ -1,8 +1,11 @@
+//React Dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
+
+//FontAwesome Dependencies
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export function DateFilter(props) {
+export default function DateFilter(props) {
   function formatDate(date) {
     let year = date.getFullYear();
     let month = date.getMonth();

@@ -1,7 +1,8 @@
+//React Dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function Hero(props) {
+export default function Hero(props) {
   let language = 'es-MX';
   const options = {
     weekday: 'long',
