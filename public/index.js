@@ -27,7 +27,7 @@ class App extends React.Component {
       }
     };
   }
-  return() {
+  render() {
     return (
       <div>
         <Hero filters={this.state.filters} />
