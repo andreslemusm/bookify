@@ -19,19 +19,31 @@ class App extends React.Component {
     super();
     this.state = {
       filters: {
-        dateFrom: today, // Proviene del archivo data.js
-        dateTo: new Date(today.valueOf() + 86400000),
-        country: 'Mexico',
-        price: 20,
-        rooms: 0
+        dateFrom: today, // Proviene del archivo data.js today.valueOf() + 86400000
+        dateTo: new Date(),
+        country: undefined,
+        price: undefined,
+        rooms: undefined
       }
     };
+    this.handleFilterChange = this.handleFilterChange.bind(this);
   }
+
+  handleFilterChange(payload) {
+    this.setState({
+      filters: payload
+    });
+  }
+
   render() {
     return (
       <div>
         <Hero filters={this.state.filters} />
-        <Filters filters={this.state.filters} />
+        <Filters
+          filters={this.state.filters}
+          //Passing the function to the child component to allow it trigger changes in the state
+          onFilterChange={this.handleFilterChange}
+        />
       </div>
     );
   }

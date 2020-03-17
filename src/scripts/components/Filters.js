@@ -12,13 +12,33 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 export default class Filters extends React.Component {
   constructor(props) {
     super(props);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
-  handleOptionChange(event) {
+  handleOptionChange(newOption) {
     let payload = this.props.filters;
-    payload[event.target.name] = event.target.value;
+    payload[newOption.target.name] = newOption.target.value;
 
     this.props.onFilterChange(payload);
+  }
+
+  handleDateChange(newDate) {
+    let payload = this.props.filters;
+
+    //If dateTo is greater than dateFrom don't change the state
+    if (
+      newDate.target.name === 'dateTo' &&
+      Date.parse(newDate.target.value) < this.props.filters.dateFrom
+    ) {
+      this.props.onFilterChange(payload);
+    } else {
+      payload[newDate.target.name] = new Date(
+        newDate.target.value.concat('', 'T00:00:00')
+      );
+
+      this.props.onFilterChange(payload);
+    }
   }
 
   render() {
@@ -28,14 +48,16 @@ export default class Filters extends React.Component {
           <DateFilter
             date={this.props.filters.dateFrom}
             icon={fas.faSignInAlt}
-            name
+            onDateChange={this.handleDateChange}
+            name={'dateFrom'}
           />
         </div>
         <div className="navbar-item">
           <DateFilter
             date={this.props.filters.dateTo}
             icon={fas.faSignOutAlt}
-            name
+            onDateChange={this.handleDateChange}
+            name={'dateTo'}
           />
         </div>
         <div className="navbar-item">
@@ -49,6 +71,8 @@ export default class Filters extends React.Component {
             ]}
             selected={this.props.filters.country}
             icon={fas.faGlobe}
+            onOptionChange={this.handleOptionChange}
+            name={'country'}
           />
         </div>
         <div className="navbar-item">
@@ -62,6 +86,8 @@ export default class Filters extends React.Component {
             ]}
             selected={this.props.filters.price}
             icon={fas.faDollarSign}
+            onOptionChange={this.handleOptionChange}
+            name={'price'}
           />
         </div>
         <div className="navbar-item">
@@ -74,6 +100,8 @@ export default class Filters extends React.Component {
             ]}
             selected={this.props.filters.rooms}
             icon={fas.faBed}
+            onOptionChange={this.handleOptionChange}
+            name={'rooms'}
           />
         </div>
       </nav>
@@ -82,5 +110,6 @@ export default class Filters extends React.Component {
 }
 
 Filters.propTypes = {
-  filters: PropTypes.object.isRequired
+  filters: PropTypes.object.isRequired,
+  onFilterChange: PropTypes.func.isRequired
 };

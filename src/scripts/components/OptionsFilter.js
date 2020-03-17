@@ -11,8 +11,8 @@ export default class OptionsFilter extends React.Component {
     this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
-  handleOptionChange(event) {
-    this.props.onOptionChange(event);
+  handleOptionChange(newOption) {
+    this.props.onOptionChange(newOption);
   }
   render() {
     return (
@@ -20,12 +20,16 @@ export default class OptionsFilter extends React.Component {
         <div className="control has-icons-left">
           <div className="select" style={{ width: '100%' }}>
             <select
-              name={this.props.selected}
+              value={this.props.selected}
               onChange={this.handleOptionChange}
+              name={this.props.name}
             >
               {this.props.options.map(option => {
                 return (
-                  <option key={option.name} value={option.value}>
+                  <option
+                    key={option.name}
+                    value={option.value === undefined ? '' : option.value}
+                  >
                     {option.name}
                   </option>
                 );
@@ -44,7 +48,7 @@ export default class OptionsFilter extends React.Component {
 OptionsFilter.propTypes = {
   options: PropTypes.array.isRequired,
   icon: PropTypes.object.isRequired,
-  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
-  onOptionChange: PropTypes.func.isRequired
+  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onOptionChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
 };

@@ -10,17 +10,16 @@ export default class DateFilter extends React.Component {
     super(props);
     this.handleDateChange = this.handleDateChange.bind(this);
   }
-  handleDateChange(event) {
-    this.props.onDateChange(event);
+
+  handleDateChange(newDate) {
+    this.props.onDateChange(newDate);
   }
+
   formatDate(date) {
-    let year = date.getFullYear();
-    let month = date.getMonth();
-    let day = date.getDate();
-    if (month.length === 2) month = '0' + month;
-    if (day.length === 2) day = '0' + day;
-    return [year, month, day].join('-');
+    // Use the ISO 8601 format YYYY-MM-DDTHH:mm:ss.sssZ
+    return date.toISOString().split('T')[0];
   }
+
   render() {
     return (
       <div className="field">
@@ -28,10 +27,11 @@ export default class DateFilter extends React.Component {
           <input
             className="input"
             type="date"
-            //Trigger the onChange event in the Filters component
+            //Trigger the handleOptionChange method in the Filters component
             onChange={this.handleDateChange}
-            defaultValue={this.formatDate(this.props.date)}
+            value={this.formatDate(this.props.date)}
             name={this.props.name}
+            steps={1}
           />
           <span className="icon is-small is-left">
             <FontAwesomeIcon icon={this.props.icon} />

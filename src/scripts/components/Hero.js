@@ -25,10 +25,14 @@ export default function Hero(props) {
               {props.filters.dateTo.toLocaleDateString(language, options)}
             </strong>
             {props.filters.country != undefined &&
+              props.filters.country != '' &&
               ` en ${props.filters.country}`}
-            {props.filters.price != undefined && ` por $${props.filters.price}`}
+            {props.filters.price != undefined &&
+              props.filters.price != '' &&
+              ` por $${props.filters.price} la noche`}
             {props.filters.rooms != undefined &&
-              ` de hasta ${props.filters.rooms}.`}
+              props.filters.rooms != '' &&
+              ` de hasta ${props.filters.rooms} habitaciones.`}
           </h2>
         </div>
       </div>
