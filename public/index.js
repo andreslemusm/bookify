@@ -46,7 +46,7 @@ class App extends React.Component {
           (payload.price === undefined ? true : hotel.price == payload.price) &&
           (payload.rooms === undefined
             ? true
-            : hotel.rooms <= payload.rooms + 10 &&
+            : hotel.rooms <= payload.rooms + 5 &&
               hotel.rooms > payload.rooms - 10)
         );
       })
