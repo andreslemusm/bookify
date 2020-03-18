@@ -1,18 +1,19 @@
 //React Dependencies
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 //Bulma Dependencies
-import 'bulma/css/bulma.css';
+import "bulma/css/bulma.css";
 
 //FontAwesome Dependencies
 
 //Components Dependencies
-import Filters from '../src/scripts/components/Filters.js';
-import Hero from '../src/scripts/components/Hero.js';
+import Filters from "../src/scripts/components/Filters.js";
+import Hero from "../src/scripts/components/Hero.js";
+import Hotels from "../src/scripts/components/Hotels.js";
 
 //Data Dependencies
-import { today } from '../src/scripts/data.js';
+import { today, hotelsData } from "../src/scripts/data.js";
 
 class App extends React.Component {
   constructor() {
@@ -24,7 +25,8 @@ class App extends React.Component {
         country: undefined,
         price: undefined,
         rooms: undefined
-      }
+      },
+      hotels: hotelsData
     };
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
@@ -44,9 +46,10 @@ class App extends React.Component {
           //Passing the function to the child component to allow it trigger changes in the state
           onFilterChange={this.handleFilterChange}
         />
+        <Hotels hotels={hotels} />
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("app"));
