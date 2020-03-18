@@ -18,7 +18,9 @@ export default class Filters extends React.Component {
 
   handleOptionChange(newOption) {
     let payload = this.props.filters;
-    payload[newOption.target.name] = newOption.target.value;
+    payload[newOption.target.name] =
+      //If value=undefined then option takes value=textContent
+      newOption.target.value === '' ? undefined : newOption.target.value;
 
     this.props.onFilterChange(payload);
   }

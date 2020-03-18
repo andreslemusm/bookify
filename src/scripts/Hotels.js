@@ -1,9 +1,9 @@
 //React Dependencies
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 //Components Dependencies
-import Hotel from "../src/scripts/components/Hotel.js";
+import Hotel from './Hotel.js';
 
 export default class Hotels extends React.Component {
   constructor(props) {
@@ -11,10 +11,10 @@ export default class Hotels extends React.Component {
   }
   render() {
     return (
-      <section className="section" style={{ marginTop: "3em" }}>
+      <section className="section" style={{ marginTop: '3em' }}>
         <div className="container">
           <div className="columns is-multiline">
-            {this.props.hotels === null ? (
+            {this.props.hotels.length === 0 ? (
               <article className="message is-warning">
                 <div className="message-body">
                   No se han encontrado hoteles que coincidan con los parámetros
@@ -23,9 +23,11 @@ export default class Hotels extends React.Component {
               </article>
             ) : (
               this.props.hotels.map(hotel => {
-                <div className="column is-one-third">
-                  <Hotel hotel={hotel} />
-                </div>;
+                return (
+                  <div key={hotel.slug} className="column is-one-third">
+                    <Hotel hotel={hotel} />
+                  </div>
+                );
               })
             )}
           </div>
@@ -36,5 +38,5 @@ export default class Hotels extends React.Component {
 }
 
 Hotels.propTypes = {
-  hotels: PropTypes.object.isRequired
+  hotels: PropTypes.array.isRequired
 };

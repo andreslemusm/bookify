@@ -21,6 +21,7 @@ export default class OptionsFilter extends React.Component {
           <div className="select" style={{ width: '100%' }}>
             <select
               value={this.props.selected}
+              //Trigger the handleOptionChange method in the Filters component
               onChange={this.handleOptionChange}
               name={this.props.name}
             >
@@ -28,6 +29,7 @@ export default class OptionsFilter extends React.Component {
                 return (
                   <option
                     key={option.name}
+                    //If value=undefined then option takes value=textContent
                     value={option.value === undefined ? '' : option.value}
                   >
                     {option.name}

@@ -1,39 +1,54 @@
 //React Dependencies
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 //Bulma Dependencies
-import "bulma/css/bulma.css";
+import 'bulma/css/bulma.css';
 
 //FontAwesome Dependencies
 
 //Components Dependencies
-import Filters from "../src/scripts/components/Filters.js";
-import Hero from "../src/scripts/components/Hero.js";
-import Hotels from "../src/scripts/components/Hotels.js";
+import Filters from '../src/scripts/Filters.js';
+import Hero from '../src/scripts/Hero.js';
+import Hotels from '../src/scripts/Hotels.js';
 
 //Data Dependencies
-import { today, hotelsData } from "../src/scripts/data.js";
+import { today, hotelsData } from '../src/data/data.js';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       filters: {
-        dateFrom: today, // Proviene del archivo data.js today.valueOf() + 86400000
-        dateTo: new Date(),
+        dateFrom: today, // Proviene del archivo data.js
+        dateTo: new Date(today.valueOf() + 86400000),
         country: undefined,
         price: undefined,
         rooms: undefined
       },
-      hotels: hotelsData
+      hotels: [...hotelsData]
     };
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
   handleFilterChange(payload) {
+    console.log(payload);
     this.setState({
-      filters: payload
+      filters: payload,
+      //Passing a copy instead of a reference of the hotelsArray
+      hotels: [...hotelsData].filter(hotel => {
+        return (
+          payload.dateFrom.valueOf() >= hotel.availabilityFrom &&
+          payload.dateTo.valueOf() <= hotel.availabilityTo &&
+          (payload.country === undefined
+            ? true
+            : hotel.country === payload.country) &&
+          (payload.price === undefined ? true : hotel.price == payload.price) &&
+          (payload.rooms === undefined
+            ? true
+            : hotel.rooms <= payload.rooms && hotel.rooms > payload.rooms - 10)
+        );
+      })
     });
   }
 
@@ -46,10 +61,10 @@ class App extends React.Component {
           //Passing the function to the child component to allow it trigger changes in the state
           onFilterChange={this.handleFilterChange}
         />
-        <Hotels hotels={hotels} />
+        <Hotels hotels={this.state.hotels} />
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById('app'));
