@@ -1,8 +1,8 @@
 # Bookify
 
-A single page application for booking a hotel using React.js, Bulma.css and Fontawesome Icons.
+A single page application for booking a hotel.
 
-## Installation
+# Installation
 
 1. Install dependencies (I used npm, don't know if it works with yarn):
 ```
@@ -12,3 +12,13 @@ A single page application for booking a hotel using React.js, Bulma.css and Font
 ```
   $ npm run start
 ```
+
+# Training
+
+- React:
+  - Components 
+  - Lifting State Up
+  - Forms
+  - Conditional Rendering
+- Bulma
+- React-fontawesome
