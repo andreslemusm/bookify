@@ -1,6 +1,6 @@
 # Bookify
 
-A single page application for booking a hotel.
+A single page application for booking a hotel: [Visit](https://andresclm.github.io/bookify/dist/index.html)
 
 # Installation
 
