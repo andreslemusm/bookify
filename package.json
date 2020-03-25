@@ -4,7 +4,8 @@
   "description": "A single page application for booking a hotel",
   "main": "index.js",
   "scripts": {
-    "start": "parcel public/index.html"
+    "start": "parcel public/index.html",
+    "build": "parcel build public/index.html"
   },
   "author": "Andres Lemus",
   "license": "ISC",
