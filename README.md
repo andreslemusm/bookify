@@ -1,6 +1,16 @@
 # Bookify
 
-A single page application for booking a hotel.
+A single page application for booking a hotel: [Visit](https://andresclm.github.io/bookify/dist/index.html)
+
+# Training
+
+- React:
+  - Components 
+  - Lifting State Up
+  - Forms
+  - Conditional Rendering
+- Bulma
+- React-fontawesome
 
 # Installation
 
@@ -12,13 +22,3 @@ A single page application for booking a hotel.
 ```
   $ npm run start
 ```
-
-# Training
-
-- React:
-  - Components 
-  - Lifting State Up
-  - Forms
-  - Conditional Rendering
-- Bulma
-- React-fontawesome
