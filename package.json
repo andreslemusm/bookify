@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel public/index.html",
     "build": "parcel build public/index.html",
-    "predeploy": "rm -rf dist && parcel build public/index.html"
+    "predeploy": "rm -rf dist && parcel build public/index.html --public-url replacethislinewithadot && sed -i '' 's/replacethislinewithadot/./g' dist/index.html"
   },
   "author": "Andres Lemus",
   "license": "ISC",
