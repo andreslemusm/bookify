@@ -2,6 +2,16 @@
 
 A single page application for booking a hotel: [Visit](https://andresclm.github.io/bookify/dist/index.html)
 
+# Training
+
+- React:
+  - Components 
+  - Lifting State Up
+  - Forms
+  - Conditional Rendering
+- Bulma
+- React-fontawesome
+
 # Installation
 
 1. Install dependencies (I used npm, don't know if it works with yarn):
@@ -12,13 +22,3 @@ A single page application for booking a hotel: [Visit](https://andresclm.github.
 ```
   $ npm run start
 ```
-
-# Training
-
-- React:
-  - Components 
-  - Lifting State Up
-  - Forms
-  - Conditional Rendering
-- Bulma
-- React-fontawesome
