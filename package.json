@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel public/index.html",
-    "build": "parcel build public/index.html",
-    "predeploy": "rm -rf dist && parcel build public/index.html --public-url . && sed -i '' 's/././g' dist/index.html"
+    "predeploy": "rm -rf dist && parcel build public/index.html --public-url ./"
   },
   "author": "Andres Lemus",
   "license": "ISC",
