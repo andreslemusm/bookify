@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
+//Component Dependencies
+import StarsTag from './StarsTag';
+
 export default function Hotel(props) {
   return (
     <div className="card">
@@ -19,8 +22,7 @@ export default function Hotel(props) {
         <p>{props.hotel.description}</p>
         <div
           className="field is-grouped is-grouped-multiline"
-          style={{ marginTop: '1em' }}
-        >
+          style={{ marginTop: '1em' }}>
           <div className="control">
             <div className="tags has-addons">
               <span className="tag is-medium is-info">
@@ -41,47 +43,13 @@ export default function Hotel(props) {
               </span>
             </div>
           </div>
-          <div className="control">
-            <div className="tags">
-              <span className="tag is-medium is-info">
-                <FontAwesomeIcon
-                  icon={fas.faDollarSign}
-                  style={{ margin: '0 .125em' }}
-                />
-                <FontAwesomeIcon
-                  icon={fas.faDollarSign}
-                  style={
-                    props.hotel.price >= 2
-                      ? { margin: '0 .125em' }
-                      : { margin: '0 .125em', opacity: '.25' }
-                  }
-                />
-                <FontAwesomeIcon
-                  icon={fas.faDollarSign}
-                  style={
-                    props.hotel.price >= 3
-                      ? { margin: '0 .125em' }
-                      : { margin: '0 .125em', opacity: '.25' }
-                  }
-                />
-                <FontAwesomeIcon
-                  icon={fas.faDollarSign}
-                  style={
-                    props.hotel.price >= 4
-                      ? { margin: '0 .125em' }
-                      : { margin: '0 .125em', opacity: '.25' }
-                  }
-                />
-              </span>
-            </div>
-          </div>
+          <StarsTag stars={props.hotel.price} />
         </div>
       </div>
       <div className="card-footer">
         <a
           href="javascript:alert('No implementamos esto aún :(')"
-          className="card-footer-item has-background-primary has-text-white has-text-weight-bold"
-        >
+          className="card-footer-item has-background-primary has-text-white has-text-weight-bold">
           Reservar
         </a>
       </div>

@@ -1,21 +1,15 @@
 //React Dependencies
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-//Bulma Dependencies
-import 'bulma/css/bulma.css';
-
-//FontAwesome Dependencies
 
 //Components Dependencies
-import Filters from '../src/scripts/Filters.js';
-import Hero from '../src/scripts/Hero.js';
-import Hotels from '../src/scripts/Hotels.js';
+import Filters from './Filters.js';
+import Hero from './Hero.js';
+import Hotels from './Hotels.js';
 
-//Data Dependencies
-import { today, hotelsData } from '../src/data/data.js';
+//Assets Dependencies
+import { today, hotelsData } from '../assets/data.js';
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -31,12 +25,25 @@ class App extends React.Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      filters: {
+        dateFrom: today, // Proviene del archivo data.js
+        dateTo: new Date(today.valueOf() + 86400000),
+        country: undefined,
+        price: undefined,
+        rooms: undefined
+      },
+      hotels: [...hotelsData]
+    });
+  }
+
   handleFilterChange(payload) {
-    console.log(payload);
+    console.log('hola');
     this.setState({
       filters: payload,
       //Passing a copy instead of a reference of the hotelsArray
-      hotels: [...hotelsData].filter(hotel => {
+      hotels: [...hotelsData].filter((hotel) => {
         return (
           payload.dateFrom.valueOf() >= hotel.availabilityFrom &&
           payload.dateTo.valueOf() <= hotel.availabilityTo &&
@@ -67,5 +74,3 @@ class App extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('app'));
