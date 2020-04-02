@@ -2,28 +2,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+//Moment Dependencies
+import moment from 'moment';
+
 export default function Hero(props) {
-  let language = 'es-MX';
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  };
   return (
     <section className="hero is-primary">
       <div className="hero-body">
         <div className="container">
           <h1 className="title">Bookify</h1>
           <h2 className="subtitle">
-            <strong>Hoteles</strong> desde el{' '}
-            <strong>
-              {props.filters.dateFrom.toLocaleDateString(language, options)}
-            </strong>{' '}
-            hasta el{' '}
-            <strong>
-              {props.filters.dateTo.toLocaleDateString(language, options)}
-            </strong>
+            <strong>Hoteles</strong>{' '}
+            {moment(props.filters.dateFrom).isValid()
+              ? `desde el ${moment(props.filters.dateFrom).format(
+                  'dddd, D of MMMM YYYY'
+                )}`
+              : ''}
+            {moment(props.filters.dateTo).isValid()
+              ? `, hasta el ${moment(props.filters.dateTo).format(
+                  'dddd, D of MMMM YYYY'
+                )}`
+              : ''}
             {props.filters.country != undefined &&
               ` en ${props.filters.country}`}
             {props.filters.price != undefined &&

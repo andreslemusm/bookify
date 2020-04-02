@@ -5,10 +5,8 @@ import PropTypes from 'prop-types';
 //FontAwesome Dependencies
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function formatDate(date) {
-  // Use the ISO 8601 format YYYY-MM-DDTHH:mm:ss.sssZ
-  return date.toISOString().split('T')[0];
-}
+//Moment Dependencies
+import moment from 'moment';
 
 export default function DateFilter(props) {
   return (
@@ -19,9 +17,16 @@ export default function DateFilter(props) {
           type="date"
           //Trigger the handleOptionChange method in the Filters component
           onChange={(newDate) => props.onDateChange(newDate)}
-          value={formatDate(props.date)}
+          value={
+            moment(props.date).isValid()
+              ? moment(props.date).format('YYYY-MM-DD')
+              : ''
+          }
           name={props.name}
-          steps={1}
+          min={moment().format('YYYY-MM-DD')}
+          max={moment()
+            .add(40, 'day')
+            .format('YYYY-MM-DD')}
         />
         <span className="icon is-small is-left">
           <FontAwesomeIcon icon={props.icon} />
@@ -33,7 +38,7 @@ export default function DateFilter(props) {
 
 DateFilter.propTypes = {
   icon: PropTypes.object.isRequired,
-  date: PropTypes.object.isRequired,
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   name: PropTypes.string.isRequired,
   onDateChange: PropTypes.func.isRequired
 };
