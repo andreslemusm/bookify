@@ -14,14 +14,10 @@ export default function Hero(props) {
           <h2 className="subtitle">
             <strong>Hoteles</strong>{' '}
             {moment(props.filters.dateFrom).isValid()
-              ? `desde el ${moment(props.filters.dateFrom).format(
-                  'dddd, D of MMMM YYYY'
-                )}`
+              ? `desde el ${moment(props.filters.dateFrom).format('LL')}`
               : ''}
             {moment(props.filters.dateTo).isValid()
-              ? `, hasta el ${moment(props.filters.dateTo).format(
-                  'dddd, D of MMMM YYYY'
-                )}`
+              ? `, hasta el ${moment(props.filters.dateTo).format('LL')}`
               : ''}
             {props.filters.country != undefined &&
               ` en ${props.filters.country}`}

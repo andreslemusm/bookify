@@ -9,15 +9,16 @@ A single page application for booking a hotel:
   - Lifting State Up
   - Forms
   - Conditional Rendering
+  - Components Life Cycle
 - Bulma
 - React-fontawesome
 
 # Installation
 
-1. Install dependencies (I used npm, don't know if it works with yarn):
+1. Install dependencies:
 
 ```
-  $ npm install --production
+  $ npm install
 ```
 
 2. Bundle the proyect and run it with Parcel:

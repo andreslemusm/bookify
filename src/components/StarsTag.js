@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 export default function StarsTag(props) {
-  const dollarSigns = [1, 2, 3, 4, 5];
+  const dollarSigns = [1, 2, 3, 4];
   return (
     <div className="control">
       <div className="tags">
@@ -32,5 +32,5 @@ export default function StarsTag(props) {
 }
 
 StarsTag.propTypes = {
-  stars: PropTypes.number.isRequired
+  stars: PropTypes.number.isRequired,
 };

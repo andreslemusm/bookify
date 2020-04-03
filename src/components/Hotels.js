@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 import Hotel from './Hotel.js';
 
 export default function Hotels(props) {
+  // API call states:
+  //   -Empty response: show message
+  //   -Data response: show hotels within the response
   return (
     <section className="section" style={{ marginTop: '3em' }}>
       <div className="container">

@@ -8,6 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //Moment Dependencies
 import moment from 'moment';
 
+function dateChecker(date) {
+  if (moment(date).isValid()) {
+    return moment(date).format('YYYY-MM-DD');
+  }
+  return '';
+}
+
 export default function DateFilter(props) {
   return (
     <div className="field">
@@ -17,16 +24,10 @@ export default function DateFilter(props) {
           type="date"
           //Trigger the handleOptionChange method in the Filters component
           onChange={(newDate) => props.onDateChange(newDate)}
-          value={
-            moment(props.date).isValid()
-              ? moment(props.date).format('YYYY-MM-DD')
-              : ''
-          }
+          value={dateChecker(props.date)}
           name={props.name}
-          min={moment().format('YYYY-MM-DD')}
-          max={moment()
-            .add(40, 'day')
-            .format('YYYY-MM-DD')}
+          min={dateChecker(props.dateMin)}
+          max={dateChecker(props.dateMax)}
         />
         <span className="icon is-small is-left">
           <FontAwesomeIcon icon={props.icon} />
@@ -39,6 +40,8 @@ export default function DateFilter(props) {
 DateFilter.propTypes = {
   icon: PropTypes.object.isRequired,
   date: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  dateMin: PropTypes.object.isRequired,
+  dateMax: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   onDateChange: PropTypes.func.isRequired
 };

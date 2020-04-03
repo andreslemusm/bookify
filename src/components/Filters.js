@@ -28,9 +28,17 @@ export default class Filters extends React.Component {
   }
 
   handleDateChange(newDate) {
+    if (
+      newDate.target.name === 'dateTo' &&
+      moment(newDate.target.value) <= moment(this.props.filters.dateFrom)
+    ) {
+      return;
+    }
     this.props.onFilterChange({
       ...this.props.filters,
-      [newDate.target.name]: moment(newDate.target.value)
+      [newDate.target.name]: moment(newDate.target.value).isValid()
+        ? moment(newDate.target.value)
+        : ''
     });
   }
 
@@ -43,6 +51,8 @@ export default class Filters extends React.Component {
             icon={fas.faSignInAlt}
             onDateChange={this.handleDateChange}
             name={'dateFrom'}
+            dateMin={moment()}
+            dateMax={moment(this.props.filters.dateTo).subtract(1, 'days')}
           />
         </div>
         <div className="navbar-item">
@@ -51,6 +61,8 @@ export default class Filters extends React.Component {
             icon={fas.faSignOutAlt}
             onDateChange={this.handleDateChange}
             name={'dateTo'}
+            dateMin={moment(this.props.filters.dateFrom).add(1, 'days')}
+            dateMax={moment().add(41, 'days')}
           />
         </div>
         <div className="navbar-item">
