@@ -49,6 +49,10 @@ export default function Hotel(props) {
       <div className="card-footer">
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            alert('Lo siento, aún no implementamos esto :C');
+          }}
           className="card-footer-item has-background-primary has-text-white has-text-weight-bold">
           Reservar
         </a>
@@ -58,5 +62,5 @@ export default function Hotel(props) {
 }
 
 Hotel.propTypes = {
-  hotel: PropTypes.object.isRequired
+  hotel: PropTypes.object.isRequired,
 };
